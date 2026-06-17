@@ -1,0 +1,143 @@
+
+* {
+    font-family: 'Nunito', sans-serif !important;
+}
+
+/* ================================================
+   kizunaMedicalCases — Custom Vibe UI
+   ================================================ */
+
+.cases-container {
+    background: transparent;
+
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-icon {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: #8b5cf6; /* A distinct purple for cases */
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Card Styling - Glassmorphism & Shadows */
+.case-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    padding: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+
+.case-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subject-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 2px;
+}
+
+.fw-bold {
+    font-weight: 700;
+    color: #374151;
+}
+
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.badge-blue {
+    color: #2563eb;
+}
+
+.badge-green {
+    color: #059669;
+}
+
+.badge-yellow {
+    color: #d97706;
+}
+
+.priority-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.priority-red {
+    color: #b91c1c;
+}
+
+.priority-yellow {
+    color: #b45309;
+}
+
+.priority-green {
+    color: #047857;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #4b5563;
+    font-weight: 500;
+}
+
+.info-icon {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #6b7280;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.empty-state {
+    padding: 3rem;
+    text-align: center;
+    color: #9ca3af;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    border: 1px dashed #d1d5db;
+    font-weight: 500;
+}

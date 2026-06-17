@@ -1,0 +1,26 @@
+<html style="overflow-y: hidden;">
+<head>
+    <title>Case Follow Up</title>
+</head>
+<body style="height: auto; min-height: auto;">
+<p>Hi {{{Recipient.FirstName}}},</p>
+
+<p>Your medical case ({{{Case.CaseNumber}}}) requires a follow-up. Please check your Kizuna Care dashboard for more details.</p>
+
+<table cellpadding="8" style="border-collapse: collapse; margin: 16px 0;">
+  <tr>
+    <td style="background:#F5F9FC; border:1px solid #E0E0E0; font-weight:bold;">Case Subject</td>
+    <td style="border:1px solid #E0E0E0;">{{{Case.Subject}}}</td>
+  </tr>
+  <tr>
+    <td style="background:#F5F9FC; border:1px solid #E0E0E0; font-weight:bold;">Status</td>
+    <td style="border:1px solid #E0E0E0;">{{{Case.Status}}}</td>
+  </tr>
+</table>
+
+<p>If you have any questions, please contact your village health worker.</p>
+
+<p>Kizuna Care<br/>
+Healthcare for rural India</p>
+</body>
+</html>

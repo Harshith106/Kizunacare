@@ -1,0 +1,139 @@
+<template>
+    <div class="stats-wrapper">
+
+        <!-- Apex error — visible so we can diagnose -->
+        <template if:true={hasError}>
+            <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-m-bottom_small" role="alert">
+                <span class="slds-assistive-text">Error</span>
+                <h2>Stats Error: {errorMessage}</h2>
+            </div>
+        </template>
+
+        <!-- No linked Contact / role not set -->
+        <template if:true={noRole}>
+            <div class="slds-box slds-text-align_center no-role-box">
+                <p class="slds-text-body_small no-role-text">Stats unavailable — no patient or doctor profile linked to this user.</p>
+            </div>
+        </template>
+
+        <!-- Patient Stats -->
+        <template if:true={isPatient}>
+            <div class="slds-grid slds-gutters_small slds-wrap">
+
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <div class="stat-card accent-blue">
+                        <svg class="stat-icon" viewBox="0 0 24 24">
+                            <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/>
+                        </svg>
+                        <p class="stat-value">{activeCases}</p>
+                        <p class="stat-label">Active Cases</p>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <div class="stat-card accent-teal">
+                        <svg class="stat-icon" viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+                        </svg>
+                        <p class="stat-value">{lastVisit}</p>
+                        <p class="stat-label">Last Visit</p>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <div class="stat-card accent-blue">
+                        <svg class="stat-icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                        </svg>
+                        <p class="stat-value">{nextAppointment}</p>
+                        <p class="stat-label">Next Appointment</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Healthworker card (patient only) -->
+            <template if:true={hasHealthworker}>
+                <div class="hw-section slds-m-top_medium">
+                    <p class="hw-section-label">
+                        <svg class="hw-label-icon" viewBox="0 0 24 24">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        Your Healthworker
+                    </p>
+                    <div class="hw-card">
+                        <div class="hw-main">
+                            <p class="hw-name">{healthworker.Name}</p>
+                            <p class="hw-role-tag">Assigned Healthworker</p>
+                        </div>
+                        <div class="hw-details">
+                            <template if:true={healthworker.Phone}>
+                                <div class="hw-info-item">
+                                    <svg viewBox="0 0 24 24" class="hw-info-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                    <span>{healthworker.Phone}</span>
+                                </div>
+                            </template>
+                            <template if:true={healthworker.Email}>
+                                <div class="hw-info-item">
+                                    <svg viewBox="0 0 24 24" class="hw-info-icon"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                    <span>{healthworker.Email}</span>
+                                </div>
+                            </template>
+                            <template if:true={healthworker.Languages__c}>
+                                <div class="hw-info-item">
+                                    <svg viewBox="0 0 24 24" class="hw-info-icon"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                    <span>Speaks: {healthworker.Languages__c}</span>
+                                </div>
+                            </template>
+                            <template if:true={healthworker.Qualification__c}>
+                                <div class="hw-info-item">
+                                    <svg viewBox="0 0 24 24" class="hw-info-icon"><path d="M22 10v6M2 10l10-5 10 5-10 5zM6 12v5c3 3 9 3 12 0v-5"/></svg>
+                                    <span>{healthworker.Qualification__c}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </template>
+
+        <!-- Doctor Stats -->
+        <template if:true={isDoctor}>
+            <div class="slds-grid slds-gutters_small slds-wrap">
+
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <div class="stat-card accent-blue">
+                        <svg class="stat-icon" viewBox="0 0 24 24">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        <p class="stat-value">{todayCases}</p>
+                        <p class="stat-label">Today's Cases</p>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <div class="stat-card accent-teal">
+                        <svg class="stat-icon" viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+                        </svg>
+                        <p class="stat-value">{todayAppointments}</p>
+                        <p class="stat-label">Today's Appointments</p>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <div class="stat-card accent-blue">
+                        <svg class="stat-icon" viewBox="0 0 24 24">
+                            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <p class="stat-value">{nextCamp}</p>
+                        <p class="stat-label">Next Camp</p>
+                    </div>
+                </div>
+
+            </div>
+        </template>
+
+    </div>
+</template>

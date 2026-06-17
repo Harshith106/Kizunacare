@@ -1,0 +1,48 @@
+<template>
+    <div class="hero-wrapper">
+
+        
+        <div class="user-panel slds-p-around_medium">
+            
+            <div class="greeting-row slds-grid slds-grid_vertical-align-center slds-gutters_x-small">
+                <span class="greeting-text">{greeting} {userName}</span>
+
+                <template if:true={isMorning}>
+                    <svg class="time-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="13" r="4"/>
+                        <path d="M3 19h18M12 3v2M5.5 7.5 4 6M18.5 7.5 20 6M2 13h2M20 13h2"/>
+                    </svg>
+                </template>
+                <template if:true={isAfternoon}>
+                    <svg class="time-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                </template>
+                <template if:true={isEvening}>
+                    <svg class="time-icon" viewBox="0 0 24 24">
+                        <path d="M12 19a4 4 0 0 1 0-8 4 4 0 0 1 0 8zM3 19h18M12 7V5M7 9 5.5 7.5M17 9l1.5-1.5"/>
+                    </svg>
+                </template>
+                <template if:true={isNight}>
+                    <svg class="time-icon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+                    </svg>
+                </template>
+            </div>
+        </div>
+
+        <!-- Center: Title & Subtitle -->
+        <div class="hero-center slds-text-align_center">
+            <h1 class="hero-title slds-m-bottom_small">{heroTitle}</h1>
+            <p class="hero-subtitle">{heroSubtitle}</p>
+        </div>
+
+        <!-- Wave bottom divider -->
+        <div class="wave-divider" aria-hidden="true">
+            <svg viewBox="0 0 1440 70" preserveAspectRatio="none">
+                <path d="M0,35 C360,70 1080,0 1440,35 L1440,70 L0,70 Z" fill="#F5F9FC"/>
+            </svg>
+        </div>
+    </div>
+</template>

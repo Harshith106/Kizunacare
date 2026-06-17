@@ -1,0 +1,90 @@
+<template>
+    <div class="community-wrapper">
+
+        <!-- Tab Selector -->
+        <div class="tab-bar">
+            <button class={eventsTabClass} data-tab="events" onclick={handleTabSelect}>
+                <svg class="tab-icon" viewBox="0 0 24 24">
+                    <rect x="3" y="4" width="18" height="18" rx="2"/>
+                    <path d="M16 2v4M8 2v4M3 10h18"/>
+                </svg>
+                Healthcare Events
+            </button>
+            <button class={programsTabClass} data-tab="programs" onclick={handleTabSelect}>
+                <svg class="tab-icon" viewBox="0 0 24 24">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+                Health Programs
+            </button>
+        </div>
+
+        <!-- Scrollable Cards Area -->
+        <div class="cards-scroll-area">
+
+            <!-- Events Panel -->
+            <template if:true={showEvents}>
+                <template if:true={hasEvents}>
+                    <div class="slds-grid slds-gutters_small slds-wrap">
+                        <template for:each={events} for:item="evt">
+                            <div key={evt.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-m-bottom_small">
+                                <div class="event-card clickable" onclick={handleCardClick} data-id={evt.Id} data-object="Healthcare_Event__c">
+                                    <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_x-small">
+                                        <span class="event-date">{evt.Event_Date__c}</span>
+                                        <span class="status-badge">{evt.Status__c}</span>
+                                    </div>
+                                    <p class="event-name slds-m-bottom_xx-small">{evt.Name}</p>
+                                    <p class="event-meta">
+                                        <svg class="meta-icon" viewBox="0 0 24 24">
+                                            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+                                            <circle cx="12" cy="10" r="3"/>
+                                        </svg>
+                                        {evt.Venue__c}
+                                    </p>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+                <template if:false={hasEvents}>
+                    <div class="empty-state">
+                        <svg viewBox="0 0 24 24" class="empty-icon">
+                            <rect x="3" y="4" width="18" height="18" rx="2"/>
+                            <path d="M16 2v4M8 2v4M3 10h18"/>
+                        </svg>
+                        <p>No events match your filters.</p>
+                    </div>
+                </template>
+            </template>
+
+            <!-- Programs Panel -->
+            <template if:true={showPrograms}>
+                <template if:true={hasPrograms}>
+                    <div class="slds-grid slds-gutters_small slds-wrap">
+                        <template for:each={programs} for:item="prog">
+                            <div key={prog.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-m-bottom_small">
+                                <div class="program-card clickable" onclick={handleCardClick} data-id={prog.Id} data-object="Health_Program__c">
+                                    <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_x-small">
+                                        <span class="program-type">{prog.Program_Type__c}</span>
+                                        <span class="status-badge">{prog.Status__c}</span>
+                                    </div>
+                                    <p class="program-name slds-m-bottom_xx-small">{prog.Name}</p>
+                                    <p class="program-dates">{prog.Start_Date__c} &ndash; {prog.End_Date__c}</p>
+                                    <p class="program-desc">{prog.Description__c}</p>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+                <template if:false={hasPrograms}>
+                    <div class="empty-state">
+                        <svg viewBox="0 0 24 24" class="empty-icon">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                        <p>No programs match your filters.</p>
+                    </div>
+                </template>
+            </template>
+
+        </div>
+    </div>
+</template>

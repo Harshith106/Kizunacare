@@ -1,0 +1,71 @@
+<template>
+    <div class="tasks-container slds-p-around_medium">
+        
+        <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_medium slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-grid slds-grid_align-start slds-grid_vertical-align-center">
+                <lightning-button label="New Task" variant="brand" onclick={handleNewTask} class="slds-m-right_small"></lightning-button>
+                <lightning-combobox 
+                    name="statusFilter" 
+                    label="Filter Status" 
+                    variant="label-hidden"
+                    value={statusFilter} 
+                    options={statusOptions} 
+                    onchange={handleStatusChange}
+                    class="custom-combo-box">
+                </lightning-combobox>
+            </div>
+        </div>
+
+        <template if:true={hasTasks}>
+            <div class="slds-grid slds-wrap slds-gutters">
+                <template for:each={filteredTasks} for:item="tsk">
+                    <div key={tsk.recordId} class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
+                        <div class="task-card" onclick={handleCardClick} data-id={tsk.recordId}>
+                            
+                            <div class="card-header slds-m-bottom_x-small">
+                                <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_xx-small">
+                                    <span class="task-date">{tsk.formattedDate}</span>
+                                    <span class={tsk.statusClass}>{tsk.status}</span>
+                                </div>
+                                <h3 class="task-subject">{tsk.subject}</h3>
+                            </div>
+
+                            <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+                                <template if:true={tsk.whoName}>
+                                    <div class="slds-col slds-size_1-of-2 info-row">
+                                        <svg class="info-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                        <span class="slds-truncate" title={tsk.whoName}>{tsk.whoName}</span>
+                                    </div>
+                                </template>
+                                <template if:true={tsk.whatName}>
+                                    <div class="slds-col slds-size_1-of-2 info-row">
+                                        <svg class="info-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                                        <span class="slds-truncate" title={tsk.whatName}>{tsk.whatName}</span>
+                                    </div>
+                                </template>
+                            </div>
+
+                            <div class="slds-grid slds-grid_vertical-align-center">
+                                <span class="priority-label">Priority:</span>
+                                <span class={tsk.priorityClass}>{tsk.priority}</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </template>
+            </div>
+            
+            <template if:false={hasFilteredTasks}>
+                <div class="empty-state">
+                    No tasks match the selected filter.
+                </div>
+            </template>
+        </template>
+
+        <template if:false={hasTasks}>
+            <div class="empty-state">
+                You have no assigned tasks.
+            </div>
+        </template>
+    </div>
+</template>

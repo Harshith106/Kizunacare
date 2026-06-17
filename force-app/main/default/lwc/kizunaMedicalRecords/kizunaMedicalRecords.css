@@ -1,0 +1,148 @@
+
+* {
+    font-family: 'Nunito', sans-serif !important;
+}
+
+/* ================================================
+   kizunaMedicalRecords — Custom Vibe UI
+   ================================================ */
+
+.records-container {
+    background: transparent;
+
+}
+
+/* ── Section Title ── */
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-icon {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: #f43f5e; /* rose accent to distinguish Medical Records */
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ── Card ── */
+.record-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    padding: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,.05), 0 2px 4px -1px rgba(0,0,0,.03);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.record-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04);
+    border-color: rgba(244, 63, 94, 0.3);
+}
+
+/* ── Card Header ── */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rec-date {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    font-weight: 600;
+}
+
+/* ── Category Badges ── */
+.category-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.cat-prescription {
+    color: #2563eb;
+}
+
+.cat-lab {
+    color: #b45309;
+}
+
+.cat-vaccine {
+    color: #059669;
+}
+
+.cat-default {
+    color: #6b7280;
+}
+
+/* ── Record Name ── */
+.rec-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+/* ── Info Rows ── */
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    color: #4b5563;
+    font-weight: 500;
+}
+
+.info-icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    fill: none;
+    stroke: #9ca3af;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ── Details Snippet ── */
+.details-snippet {
+    background: #f9fafb;
+    border: 1px solid #f3f4f6;
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.snippet-text {
+    font-size: 0.8rem;
+    color: #6b7280;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+/* ── Empty State ── */
+.empty-state {
+    padding: 3rem;
+    text-align: center;
+    color: #9ca3af;
+    background: rgba(255,255,255,.5);
+    border-radius: 16px;
+    border: 1px dashed #d1d5db;
+    font-weight: 500;
+}

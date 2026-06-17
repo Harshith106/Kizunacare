@@ -1,0 +1,115 @@
+
+* {
+    font-family: 'Nunito', sans-serif !important;
+}
+
+/* ==============================================
+   KizunaHero — Colors & Sizes only
+   SLDS handles layout, spacing, typography
+   ============================================== */
+
+/* Hero section */
+.hero-wrapper {
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    min-height: 460px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0d3c7a 0%, #1565C0 45%, #26A69A 100%);
+}
+
+/* Subtle grid lines overlay */
+.hero-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+}
+
+/* ── User panel (top-left, no background) ── */
+.user-panel {
+    position: absolute;
+    top: 28px;
+    left: 32px;
+    z-index: 10;
+}
+
+/* Greeting row */
+.greeting-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.greeting-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.95);
+    letter-spacing: 0.01em;
+}
+
+/* Time-of-day SVG icon */
+.time-icon {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    fill: none;
+    stroke: rgba(255,255,255,0.90);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ── Center hero content ── */
+.hero-center {
+    position: relative;
+    z-index: 10;
+    padding: 0 24px;
+}
+
+.hero-title {
+    font-size: clamp(1.9rem, 4vw, 3rem) !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    line-height: 1.2 !important;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.20);
+}
+
+.hero-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.1rem) !important;
+    color: rgba(255,255,255,0.72) !important;
+    max-width: 500px;
+    margin: 0 auto !important;
+    line-height: 1.65 !important;
+}
+
+/* Wave bottom divider */
+.wave-divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.wave-divider svg {
+    display: block;
+    width: 100%;
+    height: 70px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .user-panel { top: 14px; left: 14px; right: 14px; min-width: unset; }
+    .hero-title { font-size: clamp(1.5rem, 6vw, 2rem) !important; }
+}

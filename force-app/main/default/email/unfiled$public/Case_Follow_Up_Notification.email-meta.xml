@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification sent to patients when a case is set to follow up</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Case Follow Up Notification</name>
+    <relatedEntityType>Case</relatedEntityType>
+    <style>none</style>
+    <subject>Follow Up Required for Your Kizuna Care Case</subject>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

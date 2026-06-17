@@ -1,0 +1,93 @@
+<template>
+    <div class="appointments-container slds-p-around_medium">
+        
+        <div class="filter-bar slds-m-bottom_medium">
+            <div class="slds-grid slds-gutters slds-wrap">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_small">
+                    <lightning-combobox 
+                        name="dateFilter" 
+                        label=""
+                        variant="label-hidden"
+                        value={dateFilter} 
+                        placeholder="All Time" 
+                        options={dateOptions} 
+                        onchange={handleDateChange}
+                        class="custom-combo-box">
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_small">
+                    <lightning-combobox 
+                        name="statusFilter" 
+                        label=""
+                        variant="label-hidden"
+                        value={statusFilter} 
+                        placeholder="All Statuses" 
+                        options={statusOptions} 
+                        onchange={handleStatusChange}
+                        class="custom-combo-box">
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_small">
+                    <lightning-combobox 
+                        name="typeFilter" 
+                        label=""
+                        variant="label-hidden"
+                        value={typeFilter} 
+                        placeholder="All Types" 
+                        options={typeOptions} 
+                        onchange={handleTypeChange}
+                        class="custom-combo-box">
+                    </lightning-combobox>
+                </div>
+            </div>
+        </div>
+
+        <template if:true={hasAppointments}>
+            <div class="slds-grid slds-wrap slds-gutters">
+                <template for:each={filteredAppointments} for:item="appt">
+                    <div key={appt.recordId} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-m-bottom_medium">
+                        <div class="appt-card" onclick={handleCardClick} data-id={appt.recordId}>
+                            <div class="card-header">
+                                <div>
+                                    <h3 class="person-name">{appt.otherPersonName}</h3>
+                                    <p class="person-role">{appt.otherPersonRole}</p>
+                                </div>
+                                <div class={appt.statusClass}>{appt.status}</div>
+                            </div>
+                            
+                            <div class="info-row slds-m-top_small">
+                                <svg class="info-icon" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>{appt.displayDate}</span>
+                            </div>
+
+                            <template if:true={appt.appointmentType}>
+                                <div class="info-row slds-m-top_x-small">
+                                    <svg class="info-icon" viewBox="0 0 24 24">
+                                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                    </svg>
+                                    <span>{appt.appointmentType}</span>
+                                </div>
+                            </template>
+
+                            <template if:true={appt.notes}>
+                                <div class="notes-snippet slds-m-top_small">
+                                    <p class="snippet-text">{appt.notes}</p>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <template if:false={hasAppointments}>
+            <div class="empty-state">
+                <p>No appointments match your filters.</p>
+            </div>
+        </template>
+    </div>
+</template>
+

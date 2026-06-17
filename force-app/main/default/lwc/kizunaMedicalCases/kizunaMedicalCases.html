@@ -1,0 +1,101 @@
+<template>
+    <div class="cases-container slds-p-around_medium">
+        
+        <div class="filter-bar slds-m-bottom_medium">
+            <div class="slds-grid slds-gutters slds-wrap">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_small">
+                    <lightning-combobox 
+                        name="dateFilter" 
+                        label=""
+                        variant="label-hidden"
+                        value={dateFilter} 
+                        placeholder="All Time" 
+                        options={dateOptions} 
+                        onchange={handleDateChange}
+                        class="custom-combo-box">
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_small">
+                    <lightning-combobox 
+                        name="statusFilter" 
+                        label=""
+                        variant="label-hidden"
+                        value={statusFilter} 
+                        placeholder="All Statuses" 
+                        options={statusOptions} 
+                        onchange={handleStatusChange}
+                        class="custom-combo-box">
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_small">
+                    <lightning-combobox 
+                        name="priorityFilter" 
+                        label=""
+                        variant="label-hidden"
+                        value={priorityFilter} 
+                        placeholder="All Priorities" 
+                        options={priorityOptions} 
+                        onchange={handlePriorityChange}
+                        class="custom-combo-box">
+                    </lightning-combobox>
+                </div>
+            </div>
+        </div>
+
+        <template if:true={hasCases}>
+            <div class="slds-grid slds-wrap slds-gutters">
+                <template for:each={filteredCases} for:item="c">
+                    <div key={c.recordId} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-m-bottom_medium">
+                        <div class="case-card" onclick={handleCardClick} data-id={c.recordId}>
+                            <div class="card-header slds-m-bottom_small">
+                                <div class={c.priorityClass}>{c.priority} Priority</div>
+                                <div class={c.statusClass}>{c.status}</div>
+                            </div>
+                            
+                            <h3 class="subject-title slds-m-bottom_x-small">{c.subject}</h3>
+                            
+                            <div class="info-row slds-m-top_small">
+                                <svg class="info-icon" viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                <span>{c.otherPersonRole}: <span class="fw-bold">{c.otherPersonName}</span></span>
+                            </div>
+
+                            <div class="info-row slds-m-top_x-small">
+                                <svg class="info-icon" viewBox="0 0 24 24">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                                <span>Visit Date: {c.displayDate}</span>
+                            </div>
+
+                            <template if:true={c.type}>
+                                <div class="info-row slds-m-top_x-small">
+                                    <svg class="info-icon" viewBox="0 0 24 24">
+                                        <line x1="8" y1="6" x2="21" y2="6"></line>
+                                        <line x1="8" y1="12" x2="21" y2="12"></line>
+                                        <line x1="8" y1="18" x2="21" y2="18"></line>
+                                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                                    </svg>
+                                    <span>Type: {c.type}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <template if:false={hasCases}>
+            <div class="empty-state">
+                <p>No medical cases match your filters.</p>
+            </div>
+        </template>
+    </div>
+</template>
+

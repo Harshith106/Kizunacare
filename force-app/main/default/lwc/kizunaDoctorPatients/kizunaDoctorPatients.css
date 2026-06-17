@@ -1,0 +1,131 @@
+
+* {
+    font-family: 'Nunito', sans-serif !important;
+}
+
+/* ================================================
+   kizunaDoctorPatients — Custom Vibe UI
+   ================================================ */
+
+.patients-container {
+    background: transparent;
+
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-icon {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: #10b981; /* Teal/emerald vibe from hero */
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Card Styling - Glassmorphism & Shadows */
+.patient-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    padding: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy hover */
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+
+
+.patient-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.patient-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.patient-demographics {
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.blood-badge {
+    color: #dc2626;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #4b5563;
+    font-weight: 500;
+}
+
+.info-icon {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #6b7280;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.medical-snippet {
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 10px 12px;
+    border: 1px solid #f3f4f6;
+}
+
+.snippet-text {
+    font-size: 0.8rem;
+    color: #4b5563;
+    line-height: 1.4;
+}
+
+.snippet-label {
+    font-weight: 700;
+    color: #374151;
+}
+
+.empty-state {
+    padding: 3rem;
+    text-align: center;
+    color: #9ca3af;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    border: 1px dashed #d1d5db;
+    font-weight: 500;
+}
